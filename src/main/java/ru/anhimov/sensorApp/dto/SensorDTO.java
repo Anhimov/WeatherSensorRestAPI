@@ -17,8 +17,4 @@ public class SensorDTO implements Serializable {
     @Size(message = "Name must be between 3 and 30 characters.", min = 3, max = 30)
     @NotEmpty(message = "Name cannot be empty")
     private String name;
-
-    public SensorDTO(String name) {
-        this.name = name;
-    }
 }

@@ -23,7 +23,7 @@ public class SensorExistenceValidator implements Validator {
     public void validate(Object target, Errors errors) {
         Sensor sensor = (Sensor) target;
 
-        if (!sensorService.findByName(sensor.getName()).isPresent()) {
+        if (sensorService.findByName(sensor.getName()).isEmpty()) {
             errors.rejectValue("name", "nameNotFound", "Sensor with this name does not exist");
         }
     }

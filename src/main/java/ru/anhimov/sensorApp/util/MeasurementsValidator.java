@@ -5,17 +5,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import ru.anhimov.sensorApp.model.Measurement;
-import ru.anhimov.sensorApp.service.MeasurementsService;
 import ru.anhimov.sensorApp.service.SensorService;
 
 @Component
 public class MeasurementsValidator implements Validator {
-    private final MeasurementsService measurementsService;
     private final SensorService sensorService;
 
     @Autowired
-    public MeasurementsValidator(MeasurementsService measurementsService, SensorService sensorService) {
-        this.measurementsService = measurementsService;
+    public MeasurementsValidator(SensorService sensorService) {
         this.sensorService = sensorService;
     }
 
@@ -33,7 +30,7 @@ public class MeasurementsValidator implements Validator {
             return;
         }
 
-        if (!sensorService.findByName(measurement.getSensor().getName()).isPresent()) {
+        if (sensorService.findByName(measurement.getSensor().getName()).isEmpty()) {
             errors.rejectValue("sensor", "sensorNotExists", "Sensor does not exist");
         }
     }

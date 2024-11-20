@@ -13,6 +13,8 @@ import org.springframework.validation.Errors;
 import ru.anhimov.sensorApp.model.Measurement;
 import ru.anhimov.sensorApp.model.Sensor;
 import ru.anhimov.sensorApp.service.SensorService;
+
+import java.util.Objects;
 import java.util.Optional;
 
 public class MeasurementsValidatorTest {
@@ -29,18 +31,19 @@ public class MeasurementsValidatorTest {
     }
 
     @Test
-    public void testValidate_SensorIsNull() {
+    public void testValidateSensorIsNull() {
         Measurement measurement = new Measurement();
         Errors errors = new BeanPropertyBindingResult(measurement, "measurement");
 
         measurementsValidator.validate(measurement, errors);
 
         assertTrue(errors.hasErrors());
-        assertEquals("Sensor must be provided", errors.getFieldError("sensor").getDefaultMessage());
+        assertEquals("Sensor must be provided", Objects.requireNonNull(errors.getFieldError("sensor"))
+                .getDefaultMessage());
     }
 
     @Test
-    public void testValidate_SensorDoesNotExist() {
+    public void testValidateSensorDoesNotExist() {
         Measurement measurement = new Measurement();
         Sensor sensor = new Sensor();
         sensor.setName("NonExistingSensor");
@@ -52,11 +55,12 @@ public class MeasurementsValidatorTest {
         measurementsValidator.validate(measurement, errors);
 
         assertTrue(errors.hasErrors());
-        assertEquals("Sensor does not exist", errors.getFieldError("sensor").getDefaultMessage());
+        assertEquals("Sensor does not exist",
+                Objects.requireNonNull(errors.getFieldError("sensor")).getDefaultMessage());
     }
 
     @Test
-    public void testValidate_SensorExists() {
+    public void testValidateSensorExists() {
         Measurement measurement = new Measurement();
         Sensor sensor = new Sensor();
         sensor.setName("ExistingSensor");

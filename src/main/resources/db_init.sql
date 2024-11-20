@@ -41,10 +41,10 @@ CREATE TABLE IF NOT EXISTS measurement
     sensor_id int REFERENCES sensor (id)
 );
 
-ALTER TABLE measurements
-    ADD COLUMN created_at timestamp;
-
-ALTER TABLE measurements
-    RENAME TO measurement;
+-- ALTER TABLE measurements
+--     ADD COLUMN created_at timestamp;
+--
+-- ALTER TABLE measurements
+--     RENAME TO measurement;
 
 TRUNCATE TABLE measurement;

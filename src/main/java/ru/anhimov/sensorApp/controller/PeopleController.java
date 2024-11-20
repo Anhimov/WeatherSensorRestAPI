@@ -1,7 +1,6 @@
 package ru.anhimov.sensorApp.controller;
 
 import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +18,10 @@ import java.util.stream.Collectors;
 public class PeopleController {
 
     private final PeopleService peopleService;
-    private final ModelMapper modelMapper;
 
     @Autowired
-    public PeopleController(PeopleService peopleService,
-                            ModelMapper modelMapper) {
+    public PeopleController(PeopleService peopleService) {
         this.peopleService = peopleService;
-        this.modelMapper = modelMapper;
     }
 
     @GetMapping()

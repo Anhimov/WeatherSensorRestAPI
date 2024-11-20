@@ -8,8 +8,11 @@ import org.springframework.validation.Errors;
 import ru.anhimov.sensorApp.model.Sensor;
 import ru.anhimov.sensorApp.service.SensorService;
 
+import java.util.Objects;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 class SensorValidatorTest {
@@ -35,8 +38,9 @@ class SensorValidatorTest {
         sensorValidator.validate(sensor, errors);
 
         verify(sensorService).findByName("ExistingSensor");
-        assert errors.hasFieldErrors("name");
-        assert errors.getFieldError("name").getCode().equals("nameAlreadyExists");
+        assertTrue(errors.hasFieldErrors("name"));
+        assertEquals("Name already exists",
+                Objects.requireNonNull(errors.getFieldError("name")).getDefaultMessage());
     }
 
     @Test
