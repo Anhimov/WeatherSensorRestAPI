@@ -46,7 +46,6 @@ class GlobalExceptionHandlerIntegrationTest {
 
         MeasurementDTO measurementDTO = new MeasurementDTO();
 
-        // Выполнение POST-запроса и проверка ответа
         mockMvc.perform(post(ENDPOINT_MEASUREMENTS_ADD)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(measurementDTO)))
@@ -55,6 +54,7 @@ class GlobalExceptionHandlerIntegrationTest {
                 .andExpect(jsonPath("$.timestamp").exists());
     }
 }
+
 
 
 
