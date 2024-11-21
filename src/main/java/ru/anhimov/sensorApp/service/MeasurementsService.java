@@ -50,7 +50,7 @@ public class MeasurementsService {
         measurement.setSensor(sensorRepository.findByName(measurement.getSensor().getName()).get());
     }
 
-    public List<Measurement> findBySensorName(String name) {
+    public List<Measurement> findMeasurementsBySensorName(String name) {
         Sensor sensor = sensorRepository
                 .findByName(name)
                 .orElseThrow(() -> new RuntimeException("Sensor not found"));

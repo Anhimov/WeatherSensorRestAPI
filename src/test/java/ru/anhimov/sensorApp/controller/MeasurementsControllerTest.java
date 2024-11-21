@@ -83,7 +83,7 @@ public class MeasurementsControllerTest {
         measurementDTO.setRaining(true);
 
         when(sensorService.convertToSensor(sensorDTO)).thenReturn(sensor);
-        when(measurementsService.findBySensorName("TestSensor")).thenReturn(List.of(new Measurement()));
+        when(measurementsService.findMeasurementsBySensorName("TestSensor")).thenReturn(List.of(new Measurement()));
         when(measurementsService.convertToMeasurementDTO(any(Measurement.class))).thenReturn(measurementDTO);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/measurements")
@@ -96,7 +96,7 @@ public class MeasurementsControllerTest {
 
         verify(sensorService).convertToSensor(sensorDTO);
         verify(validationUtil).validateAndThrow(eq(sensorExistenceValidator), eq(sensor), any(), any());
-        verify(measurementsService).findBySensorName("TestSensor");
+        verify(measurementsService).findMeasurementsBySensorName("TestSensor");
     }
 
     @Test

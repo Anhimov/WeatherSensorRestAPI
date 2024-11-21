@@ -61,7 +61,7 @@ public class MeasurementsController {
         validationUtil.validateAndThrow(sensorExistenceValidator, sensor, bindingResult, new SensorNotValidException());
 
         return new MeasurementsResponse(measurementsService
-                .findBySensorName(sensorDTO.getName())
+                .findMeasurementsBySensorName(sensorDTO.getName())
                 .stream()
                 .map(measurementsService::convertToMeasurementDTO)
                 .collect(Collectors.toList()));
