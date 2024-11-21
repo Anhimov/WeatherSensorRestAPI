@@ -27,23 +27,5 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
-
-    @ExceptionHandler(PersonNotFoundException.class)
-    public ResponseEntity<PersonErrorResponse> handlePersonNotFoundException(PersonNotFoundException exception) {
-        PersonErrorResponse response = new PersonErrorResponse();
-        response.setMessage(exception.getMessage());
-        response.setTimestamp(LocalDateTime.now());
-
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(PersonNotValidException.class)
-    public ResponseEntity<PersonErrorResponse> handlePersonNotValidException(PersonNotValidException exception) {
-        PersonErrorResponse response = new PersonErrorResponse();
-        response.setMessage(exception.getMessage());
-        response.setTimestamp(LocalDateTime.now());
-
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }
 }
 
