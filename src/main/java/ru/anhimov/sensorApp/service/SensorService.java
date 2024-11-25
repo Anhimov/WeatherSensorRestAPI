@@ -30,7 +30,6 @@ public class SensorService {
     }
 
     private void enrichSensor(Sensor sensor) {
-        // TODO
     }
 
     public Sensor convertToSensor(SensorDTO sensorDTO) {

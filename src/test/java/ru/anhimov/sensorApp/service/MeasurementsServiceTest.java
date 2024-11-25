@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.modelmapper.ModelMapper;
-import ru.anhimov.sensorApp.dto.MeasurementDTO;
 import ru.anhimov.sensorApp.model.Measurement;
 import ru.anhimov.sensorApp.model.Sensor;
 import ru.anhimov.sensorApp.repository.MeasurementsRepository;

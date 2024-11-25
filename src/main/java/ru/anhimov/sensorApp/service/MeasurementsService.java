@@ -47,7 +47,8 @@ public class MeasurementsService {
 
     private void enrichMeasurement(Measurement measurement) {
         measurement.setCreatedAt(LocalDateTime.now());
-        measurement.setSensor(sensorRepository.findByName(measurement.getSensor().getName()).get());
+        sensorRepository.findByName(measurement.getSensor().getName())
+                .ifPresent(measurement::setSensor);
     }
 
     public List<Measurement> findMeasurementsBySensorName(String name) {
